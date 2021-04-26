@@ -201,7 +201,7 @@ open(joinpath(resultsdir, "log.txt"), "w+") do io
 
         # Preprocessing
         dids = findall(map(d -> all(isinteger, filter(x -> !isnan(x), x_train[:,d])), 1:D))
-        dids = filter(d -> length(filter(x -> !isnan(x), unique(x_train[:,d]))) < args["maxcategories"], 1:D)
+        dids = filter(d -> length(filter(x -> !isnan(x), unique(x_train[:,d]))) < args["maxcategories"], dids)
         for d in dids
             ix = findall(!isnan, x_train[:,d])
             l = unique(x_train[ix,d])
